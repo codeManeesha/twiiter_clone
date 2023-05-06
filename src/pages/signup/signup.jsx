@@ -8,6 +8,7 @@ import Footer from '../../footer/Footer'
 
 const Signup1 = () => {
   const[step,setStep]=useState(1)
+  
   function onhandleNext(){
     setStep(step+1)
   }

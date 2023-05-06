@@ -36,7 +36,7 @@ const Sidebar = () => {
         "userTweetList",
         JSON.stringify([newTweet, ...oldTweetList])
       );
-    } else {
+    } else if(newTweet.content.length>0) {
       localStorage.setItem("userTweetList", JSON.stringify([newTweet]));
      
     }
@@ -151,7 +151,7 @@ const Sidebar = () => {
           <Dialog open={showTweetBox} onClose={() => setShowTweetBox(false)}>
             <DialogContent
               sx={{
-                height: "300px",
+                height: "180px",
                 width: "500px",
               }}
             >

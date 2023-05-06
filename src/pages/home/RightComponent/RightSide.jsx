@@ -9,6 +9,7 @@ import Heading from "./Heading";
 export default function RightSide() {
   const [notInterested, setNotInterested] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [itemsToShow, setItemsToShow] = useState(2);
 
   const data = [
     {
@@ -35,9 +36,35 @@ export default function RightSide() {
       name: "#Patnametro",
       Tweets: "1,667 Tweets",
     },
+    {
+      id: 5,
+      Trending: "Entertainment -Trending",
+      name: "#Leo",
+      Tweets: "16.9K Tweets",
+    },
+    {
+      id: 6,
+      Trending: "Bussiness and finance Trending",
+      name: "#InvestigateAGIgreenpac",
+      Tweets: "2,014 Tweets",
+    },
+    {
+      id: 7,
+      Trending: "Trending In India",
+      name: "#FunctionUp Student Promoting Twitter",
+      Tweets: "10,565 tweets",
+    },
   ];
   const handleNotInterested = (id) => {
     setNotInterested([...notInterested, id]);
+  };
+
+  const showMore = () => {
+    setItemsToShow(filteredData.length);
+  };
+
+  const showLess = () => {
+    setItemsToShow(2);
   };
 
   const filteredData = data.filter((item) => !notInterested.includes(item.id));
@@ -51,7 +78,7 @@ export default function RightSide() {
             <Heading />
           </div>
           <div className={Right.datapart}>
-            {filteredData.map((wid, ind) => (
+            {filteredData.slice(0, itemsToShow).map((wid, ind) => (
               <div key={ind}>
                 <ul>
                   <li
@@ -83,7 +110,11 @@ export default function RightSide() {
             ))}
           </div>
           <div className={Right.btnPart}>
-            <button> Show more</button>
+          {filteredData.length > 2 && itemsToShow < filteredData.length ? (
+        <button onClick={showMore}>Show More</button>
+      ) : (
+        <button onClick={showLess}>Show Less</button>
+      )}
           </div>
         </section>
         <div>

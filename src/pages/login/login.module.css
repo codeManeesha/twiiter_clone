@@ -56,3 +56,8 @@
 .forget span{
   padding-right: 5px;
 }
+
+
+.error{
+  color: red;
+}

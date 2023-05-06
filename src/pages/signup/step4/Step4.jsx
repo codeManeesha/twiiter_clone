@@ -6,12 +6,15 @@ import { useRecoilState } from "recoil";
 
 const Step4 = (props) => {
   const [email, setEmail] = useState("");
+  const[emailError,setEmailError] =useState("")
   const[globalData,setGobalData]=useRecoilState(globalUserObj)
  
 
   function handleNext(){
-    if(!(email.includes("@"))){
-      swal("Alert", "Enter a valid Email!!", "warning");
+     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if(!emailRegex.test(email)){
+     setEmailError("Alert Enter a valid Email!! warning");
+     return;
     }
     else{ 
       const user={
@@ -78,6 +81,7 @@ const Step4 = (props) => {
               margin: "1rem 0",
             }}
           />
+          {emailError&&<p className={s4.error}>{emailError}</p>}
         </div>
         <div className={s4.content}>
             <p>By signing up, you agree to the <span>Terms of Service</span> and <span>Privacy Policy</span>, including <span>Cookie Use</span>. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads. <span>Learn more</span>. Others will be able to find you by email or phone number, when provided, unless you choose otherwise <span>here</span>.</p>

@@ -37,4 +37,7 @@
  .next >a {
     text-decoration: none;
  }
+ .error{
+  color:red;
+ }
   

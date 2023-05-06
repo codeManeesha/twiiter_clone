@@ -16,7 +16,7 @@ const Step5 = () => {
  
 
   function handleNext(){
-    const passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{8,12}$/;
+    const passwordRegex= /^[a-zA-Z0-9!@#$%^&*]{4,8}$/;
     if(!passwordRegex){
       setPassError("Alert password should be greater than 8 Character!! warning");
       return;

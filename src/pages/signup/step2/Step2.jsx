@@ -4,19 +4,26 @@ import { Button, TextField } from "@mui/material";
 import { globalUserObj } from "../recoil";
 import { useRecoilState } from "recoil";
 import DateSelector from "./DateSelector";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 
 const Step2 = (props) => {
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const[globalData,setGobalData]=useRecoilState(globalUserObj)
+  const[nameError,setNameError] =useState("")
+  const[phoneError,setPhoneError] =useState("")
  
   function handleNext(){
-    if(!(name.length>=3)){
-      swal("Alert", "Name should be greater than 3 Character!!", "warning");
-    }else if(!(phone.length===10)){
-      swal("Alert", "Number should be valid!!", "warning");
+    const userNameRegex = /^[a-zA-Z]+$/i
+    const phoneRegex =/^[789][0-9]{9}$/
+    if(!userNameRegex.test(name)){
+      setNameError("Invalid,name format");
+      return;
+     
+    }else if(!phoneRegex.test(phone)){
+      setPhoneError("Alert Number should be valid!! warning");
+      return;
     }
     else{ 
       const user={
@@ -52,6 +59,7 @@ const Step2 = (props) => {
               marginBottom: "0px",
             }}
           />
+            {nameError && <p className={s2.error}>{nameError}</p>}
 
           <TextField
             id="outlined-basic-email"
@@ -70,6 +78,7 @@ const Step2 = (props) => {
               margin: "1rem 0",
             }}
           />
+          {phoneError && <p  className={s2.error}>{phoneError}</p>}
         </div>
         <div className={s2.content}>
           <h3>Date of birth</h3>

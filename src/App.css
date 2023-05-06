@@ -1,5 +1,8 @@
 .App{
   height: 100vh;  
   display: flex;
-  max-width: 1300px;
+   max-width: 100%;
 }
+
+ 
+

@@ -25,7 +25,7 @@ export default function Tweet() {
     };
     const oldTweetList = JSON.parse(localStorage.getItem("userTweetList"));
 
-    if (oldTweetList) {
+    if (oldTweetList && content.length!==0) {
       localStorage.setItem(
         "userTweetList",
         JSON.stringify([newTweet, ...oldTweetList])

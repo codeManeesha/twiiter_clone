@@ -151,7 +151,7 @@ const Sidebar = () => {
           <Dialog open={showTweetBox} onClose={() => setShowTweetBox(false)}>
             <DialogContent
               sx={{
-                height: "300px",
+                height: "180px",
                 width: "500px",
               }}
             >

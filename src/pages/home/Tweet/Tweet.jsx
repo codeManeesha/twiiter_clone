@@ -30,7 +30,7 @@ export default function Tweet() {
         "userTweetList",
         JSON.stringify([newTweet, ...oldTweetList])
       );
-    } else {
+    } else  if(newTweet.content.length>0) {
       localStorage.setItem("userTweetList", JSON.stringify([newTweet]));
     }
     setTweetMessage("");

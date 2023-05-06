@@ -12,18 +12,22 @@ const Step5 = () => {
   const [password, setPassword] = useState("");
   const [globalData, setGobalData] = useRecoilState(globalUserObj);
   const[globalUser,setGobalUser]=useRecoilState(globalUserData)
-
+  const[passError,setPassError] =useState("")
  
 
   function handleNext(){
-    if(!(password.length>=8)){
-      swal("Alert", "password should be greater than 8 Character!!", "warning");
+    const passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{8,12}$/;
+    if(!passwordRegex){
+      setPassError("Alert password should be greater than 8 Character!! warning");
+      return;
     }
     else{ 
       const user={
         userPassword:password
     }
+   
       setGobalData({...globalData,...user});
+     
       setGobalUser([...globalUser,globalData]);
       const oldData = JSON.parse(localStorage.getItem("userData")) || []
       localStorage.setItem("userData",JSON.stringify([...oldData,{...globalData,...user}])); 
@@ -33,7 +37,7 @@ const Step5 = () => {
     }
    
   }
-  // console.log(globalData)
+ //console.log(globalData)
   // console.log(globalUser)
   return (
     <div className={s5.main_container}>
@@ -63,6 +67,7 @@ const Step5 = () => {
               marginBottom: "0px",
             }}
           />
+          {passError&&<p className={s5.error}>{passError}</p>}
         </div>
         <div className={s5.next}>
             <Button

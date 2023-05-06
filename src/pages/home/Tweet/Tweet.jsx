@@ -16,7 +16,6 @@ export default function Tweet() {
   const [atomRender, setAtomRender] = useRecoilState(reRender);
 
   function handleTweet() {
- 
     const newTweet = {
       content: tweetMessage,
       likeCount: 0,
@@ -26,7 +25,7 @@ export default function Tweet() {
     };
     const oldTweetList = JSON.parse(localStorage.getItem("userTweetList"));
 
-    if (oldTweetList && newTweet.content>0) {
+    if (oldTweetList) {
       localStorage.setItem(
         "userTweetList",
         JSON.stringify([newTweet, ...oldTweetList])

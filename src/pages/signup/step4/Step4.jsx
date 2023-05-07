@@ -11,7 +11,12 @@ const Step4 = (props) => {
  
 
   function handleNext(){
+
+     //validation for email
      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
+    
     if(!emailRegex.test(email)){
      setEmailError("Alert Enter a valid Email!! warning");
      return;

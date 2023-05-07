@@ -17,10 +17,16 @@ const Step2 = (props) => {
   function handleNext(){
     const userNameRegex = /^[a-zA-Z]+$/i
     const phoneRegex =/^[789][0-9]{9}$/
+
+
+    // validation for username
     if(!userNameRegex.test(name)){
       setNameError("Invalid,name format");
       return;
-     
+
+
+
+     //validation for phonenumber
     }else if(!phoneRegex.test(phone)){
       setPhoneError("Alert Number should be valid!! warning");
       return;

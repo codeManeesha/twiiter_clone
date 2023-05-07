@@ -1,43 +1,50 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import s5 from "./step5.module.css";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { globalUserObj ,globalUserData } from "../recoil";
+import { globalUserObj, globalUserData } from "../recoil";
 import { useRecoilState } from "recoil";
 import swal from "sweetalert";
 
 const Step5 = () => {
-
-  const nav=useNavigate()
+  const nav = useNavigate();
   const [password, setPassword] = useState("");
   const [globalData, setGobalData] = useRecoilState(globalUserObj);
-  const[globalUser,setGobalUser]=useRecoilState(globalUserData)
-  const[passError,setPassError] =useState("")
- 
+  const [globalUser, setGobalUser] = useRecoilState(globalUserData);
+  const [passError, setPassError] = useState("");
 
-  function handleNext(){
-    const passwordRegex= /^[a-zA-Z0-9!@#$%^&*]{4,8}$/;
-    if(!passwordRegex){
-      setPassError("Alert password should be greater than 8 Character!! warning");
+  function handleNext() {
+    const passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{4,8}$/;
+
+    //validation for password
+    if (!passwordRegex) {
+      setPassError(
+        "Alert password should be greater than 8 Character!! warning"
+      );
       return;
-    }
-    else{ 
-      const user={
-        userPassword:password
-    }
-   
-      setGobalData({...globalData,...user});
-     
-      setGobalUser([...globalUser,globalData]);
-      const oldData = JSON.parse(localStorage.getItem("userData")) || []
-      localStorage.setItem("userData",JSON.stringify([...oldData,{...globalData,...user}])); 
+    } else {
+      //If the password does match, then it will
+      // create a new object with all of the data from the old one and update globalData.
+      
+      const user = {
+        userPassword: password,
+      };
+
+      setGobalData({ ...globalData, ...user });
+
+      setGobalUser([...globalUser, globalData]);
+      const oldData = JSON.parse(localStorage.getItem("userData")) || [];
+
+      //update globalUser with this new data
+      localStorage.setItem(
+        "userData",
+        JSON.stringify([...oldData, { ...globalData, ...user }])
+      );
       swal("Hurray!", "You Successfully Registered!", "success");
-      nav("/login")  
-     
+      nav("/login");
     }
-   
   }
- //console.log(globalData)
+  //console.log(globalData)
   // console.log(globalUser)
   return (
     <div className={s5.main_container}>
@@ -67,33 +74,33 @@ const Step5 = () => {
               marginBottom: "0px",
             }}
           />
-          {passError&&<p className={s5.error}>{passError}</p>}
+          {passError && <p className={s5.error}>{passError}</p>}
         </div>
         <div className={s5.next}>
-            <Button
-              onClick={handleNext}
-              variant="contained"
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: "20px",
-                backgroundColor: "grey",
-                color: "white",
-                outline: "none",
-                border: "none",
-                margin: "1rem 0",
-                width: "100%",
-                textTransform: "none",
-                fontSize: "1.2rem",
-                "&:hover": {
-                  backgroundColor: "black",
-                  color: "grey",
-                },
-              }}
-            >
-              Next
-            </Button>
+          <Button
+            onClick={handleNext}
+            variant="contained"
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "20px",
+              backgroundColor: "grey",
+              color: "white",
+              outline: "none",
+              border: "none",
+              margin: "1rem 0",
+              width: "100%",
+              textTransform: "none",
+              fontSize: "1.2rem",
+              "&:hover": {
+                backgroundColor: "black",
+                color: "grey",
+              },
+            }}
+          >
+            Next
+          </Button>
         </div>
       </div>
     </div>

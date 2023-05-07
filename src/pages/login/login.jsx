@@ -13,8 +13,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userList, setUserList] = useState([]);
-  const [emailError, setEmailError]=useState("")
-  const [passwordError, setPasswordError]=useState("")
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const nav = useNavigate();
 
@@ -24,21 +24,27 @@ const Login = () => {
   }, []);
 
   function handleLogin() {
-
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const passwordRegex= /^[a-zA-Z0-9!@#$%^&*]{4,8}$/;
+    const passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{4,8}$/;
 
-    
-    if ((email.length === 0 && !emailRegex.test(email))|| (password.length === 0 && !passwordRegex.test(password))) {
-     setEmailError ("Alert enter a valid email");
-     setPasswordError("Alert password should be greater than 8 Character!! warning")
-     return;
+    //validation for email & password
 
-
+    if (
+      (email.length === 0 && !emailRegex.test(email)) ||
+      (password.length === 0 && !passwordRegex.test(password))
+    ) {
+      setEmailError("Alert enter a valid email");
+      setPasswordError(
+        "Alert password should be greater than 8 Character!! warning"
+      );
+      return;
     } else if (userList !== null) {
       const userFind = userList.find(
         (x) => x.userEmail === email && x.userPassword === password
       );
+
+      //find the user in localstorage
+
       if (!userFind) {
         swal("Alert", "No user found. Please sign up!!", "warning");
         setEmail("");

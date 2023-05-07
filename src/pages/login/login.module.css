@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(208, 205, 205);
+  background-color: rgb(208, 205, 205); 
 }
 .inner_container {
   overflow-y: scroll;

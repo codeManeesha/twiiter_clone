@@ -9,7 +9,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { useRecoilState } from "recoil";
-import { reRender } from '../../../atom/reRender';
+import { reRender } from "../../../atom/reRender";
 
 export default function Feeds() {
   const [likeCount, setLikeCount] = useState(0);
@@ -71,11 +71,17 @@ export default function Feeds() {
                     <div className="feeds_content_header">
                       <div>
                         <b>
-                          {JSON.parse(localStorage.getItem("currentUser")).userFullName}
-                        </b>{" "}
-                        <VerifiedIcon fontSize="small" htmlColor="#2196f3" />{" "}
+                          {
+                            JSON.parse(localStorage.getItem("currentUser"))
+                              .userFullName
+                          }
+                        </b>
+                        <VerifiedIcon fontSize="small" htmlColor="#2196f3" />
                         &nbsp; @
-                        {JSON.parse(localStorage.getItem("currentUser")).userFullName}
+                        {
+                          JSON.parse(localStorage.getItem("currentUser"))
+                            .userFullName
+                        }
                       </div>
                       <div>
                         <MoreHorizIcon />
@@ -87,22 +93,16 @@ export default function Feeds() {
                     </div>
 
                     <div className="feeds_content_activity">
-                      <p onClick={() => handleCommentClick(elem)}>
-                        <ChatBubbleOutlineOutlinedIcon
-                          htmlColor={elem.isCommented ? "blue" : ""}
-                        />
+                      <p>
+                        <ChatBubbleOutlineOutlinedIcon />
                         <span>{elem.commentCount}</span>
                       </p>
-                      <p onClick={() => handleShareClick(elem)}>
-                        <LoopOutlinedIcon
-                          htmlColor={elem.isShared ? "lightGreen" : ""}
-                        />
+                      <p>
+                        <LoopOutlinedIcon />
                         <span>{elem.reTweetsCount}</span>
                       </p>
-                      <p onClick={() => handleLikeClick(elem)}>
-                        <FavoriteBorderOutlinedIcon
-                          htmlColor={elem.isLiked ? "red" : ""}
-                        />
+                      <p>
+                        <FavoriteBorderOutlinedIcon />
                         <span>{elem.likeCount}</span>
                       </p>
                       <p>

@@ -30,8 +30,8 @@ const Login = () => {
 
     
     if ((email.length === 0 && !emailRegex.test(email))|| (password.length === 0 && !passwordRegex.test(password))) {
-     setEmailError ("Alert enter a valid email");
-     setPasswordError("Alert password should be greater than 8 Character!! warning")
+     setEmailError (" enter a valid email");
+     setPasswordError(" password should be greater than 8 Character!! ")
      return;
 
 
